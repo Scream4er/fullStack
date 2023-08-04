@@ -1,16 +1,17 @@
 const express = require('express');
-const router = require('router')
+const router = express.Router();
 const { auth } = require('../middleware/auth');
+const { all, add, employee, edit, remove} = require("../controllers/employees");
 
 //*/api/employees
-router.get('/', auth, () => console.log('get all EMP'));
+router.get('/', auth, all);
 //*/api/employees/:id
-router.get('/:id', auth, () => console.log('get 1 EMP'));
+router.get('/:id', auth, employee);
 //*/api/employees/add
-router.post('/add', auth, () => console.log('add employee'));
+router.post('/add', auth, add);
 //*/api/employees/remove/:id
-router.post('/remove/:id', auth, () => console.log('remove employee'));
+router.post('/remove/:id', auth, remove);
 //*/api/employees/edit/:id
-router.put('/edit/:id', auth, () => console.log('edit employee'));
+router.put('/edit/:id', auth, edit);
 
 module.exports = router;
